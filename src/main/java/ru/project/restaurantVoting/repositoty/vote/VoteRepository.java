@@ -1,6 +1,8 @@
-package ru.project.restaurantVoting.repositoty;
+package ru.project.restaurantVoting.repositoty.vote;
 
 import ru.project.restaurantVoting.model.Vote;
+
+import java.util.Optional;
 
 public interface VoteRepository {
     // null if updated vote do not belong to userId
@@ -10,7 +12,7 @@ public interface VoteRepository {
     boolean delete(int id, int userId);
 
     // null if vote do not belong to userId
-    Vote getById(int id, int userId);
+    Optional<Vote> getById(int id, int userId);
 
-
+    Optional<Vote> getByUserId(int userId);
 }

@@ -1,4 +1,4 @@
-package ru.project.restaurantVoting.repositoty;
+package ru.project.restaurantVoting.repositoty.meal;
 
 import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
