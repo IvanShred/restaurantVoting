@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +27,11 @@ public interface CrudMealRepository extends JpaRepository<Meal, Integer> {
     @Override
     Optional<Meal> findById(Integer id);
 
-    @Override
-    List<Meal> findAll(Sort sort);
+    @Modifying
+    @Query("SELECT m FROM Meal m WHERE m.dateMeal=:currentDate")
+    List<Meal> findAll(@Param("currentDate") LocalDate date);
 
-    List<Meal> findAllByRestaurant(Restaurant restaurant);
+    @Modifying
+    @Query("SELECT m FROM Meal m WHERE m.restaurant=:restaurant AND m.dateMeal=:currentDate")
+    List<Meal> findAllByRestaurant(@Param("restaurant") Restaurant restaurant , @Param("currentDate") LocalDate date);
 }

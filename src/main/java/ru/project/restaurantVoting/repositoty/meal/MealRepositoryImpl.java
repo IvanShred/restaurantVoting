@@ -1,17 +1,21 @@
 package ru.project.restaurantVoting.repositoty.meal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.repositoty.meal.CrudMealRepository;
 import ru.project.restaurantVoting.repositoty.meal.MealRepository;
+import ru.project.restaurantVoting.util.DateUtil;
 
 import java.util.List;
 
 @Repository
 public class MealRepositoryImpl implements MealRepository {
+    //private static final Sort SORT_NAME_EMAIL = new Sort(Sort.Direction.ASC, "name", "email");
+
     @Autowired
     private CrudMealRepository crudRepository;
 
@@ -34,11 +38,11 @@ public class MealRepositoryImpl implements MealRepository {
 
     @Override
     public List<Meal> getAll() {
-        return crudRepository.findAll();
+        return crudRepository.findAll(DateUtil.getCurrentDate());
     }
 
     @Override
     public List<Meal> getAllByRestaurant(Restaurant restaurant) {
-        return crudRepository.findAllByRestaurant(restaurant);
+        return crudRepository.findAllByRestaurant(restaurant, DateUtil.getCurrentDate());
     }
 }
