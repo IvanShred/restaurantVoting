@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
-import ru.project.restaurantVoting.repositoty.meal.MealRepository;
+import ru.project.restaurantVoting.repository.meal.MealRepository;
 import ru.project.restaurantVoting.util.exception.NotFoundException;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package ru.project.restaurantVoting.repositoty.user;
+package ru.project.restaurantVoting.repository.user;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;

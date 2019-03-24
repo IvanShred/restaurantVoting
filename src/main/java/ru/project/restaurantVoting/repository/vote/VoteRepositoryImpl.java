@@ -1,11 +1,9 @@
-package ru.project.restaurantVoting.repositoty.vote;
+package ru.project.restaurantVoting.repository.vote;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.project.restaurantVoting.model.Vote;
-import ru.project.restaurantVoting.repositoty.user.CrudUserRepository;
-import ru.project.restaurantVoting.repositoty.vote.CrudVoteRepository;
-import ru.project.restaurantVoting.repositoty.vote.VoteRepository;
+import ru.project.restaurantVoting.repository.user.CrudUserRepository;
 import ru.project.restaurantVoting.util.DateUtil;
 
 import java.util.Optional;

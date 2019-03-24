@@ -25,7 +25,7 @@ public class Meal extends AbstractBaseEntity {
     @Range(min = 10, max = 3000)
     private int price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 

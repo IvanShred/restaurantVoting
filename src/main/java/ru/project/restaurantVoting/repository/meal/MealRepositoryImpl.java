@@ -1,13 +1,10 @@
-package ru.project.restaurantVoting.repositoty.meal;
+package ru.project.restaurantVoting.repository.meal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
-import ru.project.restaurantVoting.repositoty.meal.CrudMealRepository;
-import ru.project.restaurantVoting.repositoty.meal.MealRepository;
 import ru.project.restaurantVoting.util.DateUtil;
 
 import java.util.List;

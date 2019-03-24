@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Vote extends AbstractBaseEntity{
 
     @Column(name = "date_vote")
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     private LocalDate dateVote;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,4 +1,4 @@
-package ru.project.restaurantVoting.repositoty.vote;
+package ru.project.restaurantVoting.repository.vote;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,9 +19,9 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Override
     @Transactional
-    Vote save(Vote meal);
+    Vote save(Vote vote);
 
-    @Modifying
+    //@Modifying
     @Query("SELECT v FROM  Vote v WHERE v.id=:id AND v.user.id=:userId")
     Optional<Vote> findById(@Param("id") int id, @Param("userId") int userId);
 
