@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface VoteRepository {
     // null if updated vote do not belong to userId
-    Vote save(Vote meal, int userId);
+    Vote save(Vote vote, int userId);
 
     // false if vote do not belong to userId
     boolean delete(int id, int userId);
