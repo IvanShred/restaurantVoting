@@ -7,16 +7,16 @@ import java.util.List;
 
 public class MealsRestaurant {
 
-    private Restaurant restaurant;
+    private int restaurantId;
     private List<Meal> meals;
 
-    public MealsRestaurant(Restaurant restaurant, List<Meal> meals) {
-        this.restaurant = restaurant;
+    public MealsRestaurant(int restaurantId, List<Meal> meals) {
+        this.restaurantId = restaurantId;
         this.meals = meals;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public int getRestaurant() {
+        return restaurantId;
     }
 
     public List<Meal> getMeals() {
@@ -26,7 +26,7 @@ public class MealsRestaurant {
     @Override
     public String toString() {
         return "MealsRestaurant{" +
-                "restaurant=" + restaurant +
+                "restaurantID=" + restaurantId +
                 ", meals=" + meals +
                 '}';
     }

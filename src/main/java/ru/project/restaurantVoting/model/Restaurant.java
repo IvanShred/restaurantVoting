@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "address"}, name = "restaurants_unique_name_address_idx")})
-public class Restaurant extends AbstractNamedEntity{
+public class Restaurant extends AbstractNamedEntity {
 
     @Column(name = "address", nullable = false)
     @NotBlank
@@ -19,10 +19,9 @@ public class Restaurant extends AbstractNamedEntity{
     public Restaurant() {
     }
 
-    public Restaurant(Restaurant r) {
-        this(r.getId(), r.getName(), r.getAddress());
+    public Restaurant(Integer id) {
+        this(id, null, null);
     }
-
 
     public Restaurant(Integer id, String name, String address) {
         super(id, name);

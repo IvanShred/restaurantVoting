@@ -1,8 +1,8 @@
 package ru.project.restaurantVoting.repository.meal;
 
 import ru.project.restaurantVoting.model.Meal;
-import ru.project.restaurantVoting.model.Restaurant;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface MealRepository {
@@ -14,7 +14,7 @@ public interface MealRepository {
     // null if not found
     Meal get(int id);
 
-    List<Meal> getAll();
+    List<Meal> getAll(LocalDate date);
 
-    List<Meal> getAllByRestaurant(Restaurant restaurant);
+    List<Meal> getAllByRestaurant(int restaurantId, LocalDate date);
 }

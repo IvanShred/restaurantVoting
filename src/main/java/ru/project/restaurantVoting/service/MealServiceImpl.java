@@ -5,8 +5,12 @@ import org.springframework.stereotype.Service;
 import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.repository.meal.MealRepository;
+import ru.project.restaurantVoting.to.MealsRestaurant;
+import ru.project.restaurantVoting.util.DateUtil;
+import ru.project.restaurantVoting.util.MealsUtil;
 import ru.project.restaurantVoting.util.exception.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -21,31 +25,31 @@ public class MealServiceImpl implements MealService{
 
     @Override
     public Meal get(int id) throws NotFoundException {
-        return null;
+        return repository.get(id);
     }
 
     @Override
     public void delete(int id) throws NotFoundException {
-
+        repository.delete(id);
     }
 
     @Override
-    public List<Meal> getAllByRestaurant(Restaurant restaurant) {
-        return null;
+    public List<Meal> getAllByRestaurant(int restaurantId) {
+        return repository.getAllByRestaurant(restaurantId, DateUtil.getCurrentDate());
     }
 
     @Override
-    public List<Meal> getAll() {
-        return null;
+    public List<MealsRestaurant> getAll() {
+        return MealsUtil.getAllForRestaurants(repository.getAll(DateUtil.getCurrentDate()));
     }
 
     @Override
     public void update(Meal meal) {
-
+        repository.save(meal);
     }
 
     @Override
     public Meal create(Meal meal) {
-        return null;
+        return repository.save(meal);
     }
 }

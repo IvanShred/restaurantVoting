@@ -7,6 +7,7 @@ import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.util.DateUtil;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -34,12 +35,12 @@ public class MealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public List<Meal> getAll() {
-        return crudRepository.findAll(DateUtil.getCurrentDate());
+    public List<Meal> getAll(LocalDate date) {
+        return crudRepository.findAll(date);
     }
 
     @Override
-    public List<Meal> getAllByRestaurant(Restaurant restaurant) {
-        return crudRepository.findAllByRestaurant(restaurant, DateUtil.getCurrentDate());
+    public List<Meal> getAllByRestaurant(int restaurantId, LocalDate date) {
+        return crudRepository.findAllByRestaurant(restaurantId, date);
     }
 }

@@ -7,20 +7,38 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import ru.project.restaurantVoting.repository.vote.VoteRepositoryImpl;
 
+import java.util.stream.IntStream;
+
 public class TestClass {
     private static final Logger log = LoggerFactory.getLogger(TestClass.class);
 
+    public static void show (){
+        System.out.println("sdsd");
+    }
+
     public static void main(String[] args) {
-        log.info("test log");
-        System.out.println("test");
+//        log.info("test log");
+//        System.out.println("test");
+//
+//        try (GenericXmlApplicationContext appCtx = new GenericXmlApplicationContext()) {
+//            appCtx.load("spring/spring-app.xml", "spring/spring-db.xml");
+//            appCtx.refresh();
+//
+//            VoteRepositoryImpl voteRepository = appCtx.getBean(VoteRepositoryImpl.class);
+//            voteRepository.getById(100012, 100000);
+//        }
 
-        try (GenericXmlApplicationContext appCtx = new GenericXmlApplicationContext()) {
-            appCtx.load("spring/spring-app.xml", "spring/spring-db.xml");
-            appCtx.refresh();
+//        int x =5;
+//        Object o = x;
+//        x = 10;
+//        int y = (int)o;
+//        System.out.println(y);
 
-            VoteRepositoryImpl voteRepository = appCtx.getBean(VoteRepositoryImpl.class);
-            voteRepository.getById(100012, 100000);
-        }
+//        TestClass obj = null;
+//        obj.show();
+
+//        int summ = 0;
+//        IntStream.range(0, 3).forEach(value -> summ += value);
 
 //        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
 //        applicationContext.getBean("entityManagerFactory");

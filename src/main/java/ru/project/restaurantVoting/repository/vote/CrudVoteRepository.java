@@ -14,8 +14,8 @@ import java.util.Optional;
 public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Transactional
     @Modifying
-    @Query("DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:userId")
-    int delete(@Param("id") int id, @Param("userId") int userId);
+    @Query("DELETE FROM Vote v WHERE v.user.id=:userId AND v.dateVote=:date")
+    int delete(@Param("userId") int userId, @Param("date") LocalDate date);
 
     @Override
     @Transactional
@@ -25,6 +25,6 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Query("SELECT v FROM  Vote v WHERE v.id=:id AND v.user.id=:userId")
     Optional<Vote> findById(@Param("id") int id, @Param("userId") int userId);
 
-    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.dateVote=:currentDate")
-    Optional<Vote> findByUser(@Param("userId") int userId, @Param("currentDate") LocalDate date);
+    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.dateVote=:date")
+    Optional<Vote> findByUser(@Param("userId") int userId, @Param("date") LocalDate date);
 }

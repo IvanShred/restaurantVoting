@@ -1,18 +1,22 @@
-package ru.project.restaurantVoting.model;
+package ru.project.restaurantVoting.to;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.util.DateUtil;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "meals")
-public class Meal extends AbstractBaseEntity {
+public class MealTo extends BaseTo implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "date_meal", nullable = false)
     @NotNull
@@ -28,72 +32,59 @@ public class Meal extends AbstractBaseEntity {
     @Range(min = 10, max = 3000)
     private int price;
 
-    @ManyToOne(fetch = FetchType.LAZY/*EAGER*/)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    private Restaurant restaurant;
+    private int restaurantId;
 
-    public Meal() {
+    public MealTo() {
     }
 
-    public Meal(LocalDate dateMeal, String description, int price, Restaurant restaurant) {
-        this(null, dateMeal, description, price, restaurant);
-    }
-
-//    public Meal(Integer id, LocalDate dateMeal, String description, int price) {
-//        super(id);
-//        this.dateMeal = dateMeal;
-//        this.description = description;
-//        this.price = price;
-//    }
-
-    public Meal(Integer id, LocalDate dateMeal, String description, int price, Restaurant restaurant) {
+    public MealTo(Integer id, LocalDate dateMeal, String description, int price, int restaurantId) {
         super(id);
         this.dateMeal = dateMeal;
         this.description = description;
         this.price = price;
-        this.restaurant = restaurant;
+        this.restaurantId = restaurantId;
     }
 
     public LocalDate getDateMeal() {
         return dateMeal;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-
     public void setDateMeal(LocalDate dateMeal) {
         this.dateMeal = dateMeal;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public void setPrice(int price) {
         this.price = price;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     @Override
     public String toString() {
-        return "Meal{" +
-                "id=" + id +
-                ", dateMeal=" + dateMeal +
+        return "MealTo{" +
+                "dateMeal=" + dateMeal +
                 ", description='" + description + '\'' +
                 ", price=" + price +
+                ", restaurantId=" + restaurantId +
+                ", id=" + id +
                 '}';
     }
 }

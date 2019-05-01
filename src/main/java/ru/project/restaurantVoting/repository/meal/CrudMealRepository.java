@@ -27,10 +27,10 @@ public interface CrudMealRepository extends JpaRepository<Meal, Integer> {
     Optional<Meal> findById(Integer id);
 
     @Modifying
-    @Query("SELECT m FROM Meal m WHERE m.dateMeal=:currentDate")
-    List<Meal> findAll(@Param("currentDate") LocalDate date);
+    @Query("SELECT m FROM Meal m WHERE m.dateMeal=:date")
+    List<Meal> findAll(@Param("date") LocalDate date);
 
     @Modifying
-    @Query("SELECT m FROM Meal m WHERE m.restaurant=:restaurant AND m.dateMeal=:currentDate")
-    List<Meal> findAllByRestaurant(@Param("restaurant") Restaurant restaurant , @Param("currentDate") LocalDate date);
+    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restaurantId AND m.dateMeal=:date")
+    List<Meal> findAllByRestaurant(@Param("restaurantId") int restaurantId , @Param("date") LocalDate date);
 }
