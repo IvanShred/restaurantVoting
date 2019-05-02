@@ -9,10 +9,10 @@ public interface VoteRepository {
     // null if updated vote do not belong to userId
     Vote save(LocalDate date, int userId, int restaurantId);
 
-    void delete(int userId, LocalDate date);
+    boolean delete(int userId, LocalDate date);
 
     // null if vote do not belong to userId
-    Optional<Vote> getById(int id, int userId);
+    //Optional<Vote> getById(int id, int userId);
 
-    Optional<Vote> getByUserId(int userId, LocalDate date);
+    Vote getByUserId(int userId, LocalDate date);
 }

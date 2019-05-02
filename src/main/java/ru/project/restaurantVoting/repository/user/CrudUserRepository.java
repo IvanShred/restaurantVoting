@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface CrudUserRepository  extends JpaRepository<User, Integer> {
+public interface CrudUserRepository extends JpaRepository<User, Integer> {
     @Transactional
     @Modifying
 //    @Query(name = User.DELETE)
@@ -23,13 +23,13 @@ public interface CrudUserRepository  extends JpaRepository<User, Integer> {
     @Transactional
     User save(User user);
 
-    @Override
-    Optional<User> findById(Integer id);
+//    @Override
+//    Optional<User> findById(Integer id);
 
-    @Override
-    List<User> findAll(Sort sort);
+//    @Override
+//    List<User> findAll(Sort sort);
 
-    User getByEmail(String email);
+//    User getByEmail(String email);
 
     @Override
     User getOne(Integer id);

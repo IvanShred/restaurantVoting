@@ -2,6 +2,7 @@ package ru.project.restaurantVoting.service;
 
 import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
+import ru.project.restaurantVoting.to.MealTo;
 import ru.project.restaurantVoting.to.MealsRestaurant;
 import ru.project.restaurantVoting.util.exception.NotFoundException;
 
@@ -16,7 +17,7 @@ public interface MealService {
 
     List<MealsRestaurant> getAll();
 
-    void update(Meal meal);
+    void update(MealTo mealTo);
 
     Meal create(Meal meal);
 }

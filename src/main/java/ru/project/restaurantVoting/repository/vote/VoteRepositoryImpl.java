@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.model.Vote;
+import ru.project.restaurantVoting.repository.restaurant.CrudRestaurantRepository;
 import ru.project.restaurantVoting.repository.user.CrudUserRepository;
 import ru.project.restaurantVoting.util.DateUtil;
 
@@ -19,6 +20,9 @@ public class VoteRepositoryImpl implements VoteRepository {
     @Autowired
     private CrudUserRepository crudUserRepository;
 
+    @Autowired
+    private CrudRestaurantRepository crudRestaurantRepository;
+
     @Override
     @Transactional
     public Vote save(LocalDate date, int userId, int restaurantId) {
@@ -26,21 +30,21 @@ public class VoteRepositoryImpl implements VoteRepository {
 //            return null;
 //        }
 //        vote.setUser(crudUserRepository.getOne(userId));
-        return crudRepository.save(new Vote(date, crudUserRepository.getOne(userId), new Restaurant(restaurantId)));
+        return crudRepository.save(new Vote(date, crudUserRepository.getOne(userId), crudRestaurantRepository.getOne(restaurantId)/*new Restaurant(restaurantId)*/));
     }
 
     @Override
-    public void delete(int userId, LocalDate date) {
-        crudRepository.delete(userId, date);
+    public boolean delete(int userId, LocalDate date) {
+        return crudRepository.delete(userId, date) != 0;
     }
 
-    @Override
-    public Optional<Vote> getById(int id, int userId) {
-        return crudRepository.findById(id, userId);
-    }
+//    @Override
+//    public Optional<Vote> getById(int id, int userId) {
+//        return crudRepository.findById(id, userId);
+//    }
 
     @Override
-    public Optional<Vote> getByUserId(int userId, LocalDate date) {
+    public Vote getByUserId(int userId, LocalDate date) {
         return crudRepository.findByUser(userId, date);
     }
 }

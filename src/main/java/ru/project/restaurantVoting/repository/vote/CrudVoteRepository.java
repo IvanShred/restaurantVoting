@@ -22,9 +22,9 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     Vote save(Vote vote);
 
     //@Modifying
-    @Query("SELECT v FROM  Vote v WHERE v.id=:id AND v.user.id=:userId")
-    Optional<Vote> findById(@Param("id") int id, @Param("userId") int userId);
+//    @Query("SELECT v FROM  Vote v WHERE v.id=:id AND v.user.id=:userId")
+//    Optional<Vote> findById(@Param("id") int id, @Param("userId") int userId);
 
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.dateVote=:date")
-    Optional<Vote> findByUser(@Param("userId") int userId, @Param("date") LocalDate date);
+    Vote findByUser(@Param("userId") int userId, @Param("date") LocalDate date);
 }

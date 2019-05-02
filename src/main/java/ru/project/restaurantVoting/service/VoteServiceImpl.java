@@ -3,6 +3,7 @@ package ru.project.restaurantVoting.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.model.User;
 import ru.project.restaurantVoting.model.Vote;
@@ -19,6 +20,8 @@ import ru.project.restaurantVoting.util.MealsUtil;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import static ru.project.restaurantVoting.util.ValidationUtil.checkNotFound;
 
 @Service
 public class VoteServiceImpl implements VoteService {
@@ -70,7 +73,7 @@ public class VoteServiceImpl implements VoteService {
     @Override
     @Transactional
     public Vote vote(int restaurantId, int userId) {
-        if (voteRepository.getByUserId(userId, DateUtil.getCurrentDate()).isPresent()) {
+        if (voteRepository.getByUserId(userId, DateUtil.getCurrentDate()) != null) {
             DateUtil.checkTime();
             voteRepository.delete(userId, DateUtil.getCurrentDate());
         }
@@ -80,7 +83,8 @@ public class VoteServiceImpl implements VoteService {
     @Override
     @Transactional
     public void cancelVote(int userId) {
-        DateUtil.checkTime();
-        voteRepository.delete(userId, DateUtil.getCurrentDate());
+        //DateUtil.checkTime();
+        checkNotFound(voteRepository.delete(userId, DateUtil.getCurrentDate()), "userId=" + userId);
+        //voteRepository.delete(userId, DateUtil.getCurrentDate());
     }
 }

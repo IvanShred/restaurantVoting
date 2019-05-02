@@ -26,6 +26,13 @@ public class MealsUtil {
         return new Meal(null, newMeal.getDateMeal(), newMeal.getDescription(), newMeal.getPrice(), new Restaurant(newMeal.getRestaurantId()));
     }
 
+    public static Meal updateFromTo(Meal meal, MealTo mealTo) {
+        meal.setDateMeal(mealTo.getDateMeal());
+        meal.setDescription(mealTo.getDescription());
+        meal.setPrice(mealTo.getPrice());
+        return meal;
+    }
+
 //    public static MealsRestaurant getForRestaurant(Restaurant restaurant, List<Meal> meals) {
 //        return new MealsRestaurant(restaurant, meals);
 //    }

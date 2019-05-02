@@ -1,6 +1,8 @@
 package ru.project.restaurantVoting.to;
 
-public abstract class BaseTo /*implements HasId*/ {
+import ru.project.restaurantVoting.HasId;
+
+public abstract class BaseTo implements HasId {
     protected Integer id;
 
     public BaseTo() {

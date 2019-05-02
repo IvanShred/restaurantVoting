@@ -2,13 +2,8 @@ package ru.project.restaurantVoting.to;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
-import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.util.DateUtil;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,17 +13,14 @@ import java.time.LocalDate;
 public class MealTo extends BaseTo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "date_meal", nullable = false)
     @NotNull
     @DateTimeFormat(pattern = DateUtil.DATE_PATTERN)
     private LocalDate dateMeal;
 
-    @Column(name = "description", nullable = false)
     @NotBlank
     @Size(min = 3, max = 200)
     private String description;
 
-    @Column(name = "price", nullable = false)
     @Range(min = 10, max = 3000)
     private int price;
 

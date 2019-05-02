@@ -1,10 +1,13 @@
 package ru.project.restaurantVoting.util;
 
+import ru.project.restaurantVoting.util.exception.ChangeVoteException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class DateUtil {
     public static final String DATE_PATTERN = "yyyy-MM-dd";
+    public static final int TIME_TO_REVOTE = 23;
 
     public static LocalDate getCurrentDate(){
         return LocalDate.now();
@@ -15,8 +18,8 @@ public class DateUtil {
     }
 
     public static void checkTime() {
-        if (DateUtil.getCurrentTime() >= 23) {
-            throw new RuntimeException();
+        if (DateUtil.getCurrentTime() >= TIME_TO_REVOTE) {
+            throw new ChangeVoteException("Unable to re-vote after " + TIME_TO_REVOTE);
         }
     }
 }
