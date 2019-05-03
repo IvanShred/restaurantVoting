@@ -24,9 +24,6 @@ public class VoteServiceImpl implements VoteService {
     @Autowired
     private MealRepository mealRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
 //    @Override
 //    public Vote create(Vote vote, int userId) {
 //        checkTime();

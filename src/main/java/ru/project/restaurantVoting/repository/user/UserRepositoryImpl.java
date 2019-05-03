@@ -29,10 +29,10 @@ public class UserRepositoryImpl implements UserRepository {
 //        return crudRepository.findById(id).orElse(null);
 //    }
 //
-//    @Override
-//    public User getByEmail(String email) {
-//        return crudRepository.getByEmail(email);
-//    }
+    @Override
+    public User getByEmail(String email) {
+        return crudRepository.getByEmail(email);
+    }
 //
 //    @Override
 //    public List<User> getAll() {

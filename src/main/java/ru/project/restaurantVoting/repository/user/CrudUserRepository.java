@@ -29,7 +29,7 @@ public interface CrudUserRepository extends JpaRepository<User, Integer> {
 //    @Override
 //    List<User> findAll(Sort sort);
 
-//    User getByEmail(String email);
+    User getByEmail(String email);
 
     @Override
     User getOne(Integer id);

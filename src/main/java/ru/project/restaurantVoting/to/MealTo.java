@@ -10,8 +10,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class MealTo extends BaseTo implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class MealTo extends BaseTo /*implements Serializable*/ {
+    //private static final long serialVersionUID = 1L;
 
     @NotNull
     @DateTimeFormat(pattern = DateUtil.DATE_PATTERN)
