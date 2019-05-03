@@ -3,7 +3,7 @@ package ru.project.restaurantVoting.util;
 import ru.project.restaurantVoting.model.Meal;
 import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.to.MealTo;
-import ru.project.restaurantVoting.to.MealsRestaurant;
+import ru.project.restaurantVoting.to.MealsRestaurantTo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MealsUtil {
-    public static List<MealsRestaurant> getAllForRestaurants(List<Meal> meals) {
+    public static List<MealsRestaurantTo> getAllForRestaurants(List<Meal> meals) {
         Map<Integer, List<Meal>> map = meals.stream()
-                .collect(Collectors.groupingBy(/*Meal::getRestaurant*/meal -> meal.getRestaurant().getId()));
+                .collect(Collectors.groupingBy(/*Meal::getRestaurantId*/meal -> meal.getRestaurant().getId()));
 
-        List<MealsRestaurant> result = new ArrayList<>();
+        List<MealsRestaurantTo> result = new ArrayList<>();
         for (Map.Entry<Integer, List<Meal>> entry : map.entrySet()) {
-            result.add(new MealsRestaurant(entry.getKey(), entry.getValue()));
+            result.add(new MealsRestaurantTo(entry.getKey(), entry.getValue()));
         }
         return result;
     }
@@ -33,7 +33,7 @@ public class MealsUtil {
         return meal;
     }
 
-//    public static MealsRestaurant getForRestaurant(Restaurant restaurant, List<Meal> meals) {
-//        return new MealsRestaurant(restaurant, meals);
+//    public static MealsRestaurantTo getForRestaurant(Restaurant restaurant, List<Meal> meals) {
+//        return new MealsRestaurantTo(restaurant, meals);
 //    }
 }

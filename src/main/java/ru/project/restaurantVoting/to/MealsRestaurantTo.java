@@ -5,17 +5,17 @@ import ru.project.restaurantVoting.model.Restaurant;
 
 import java.util.List;
 
-public class MealsRestaurant {
+public class MealsRestaurantTo {
 
     private int restaurantId;
     private List<Meal> meals;
 
-    public MealsRestaurant(int restaurantId, List<Meal> meals) {
+    public MealsRestaurantTo(int restaurantId, List<Meal> meals) {
         this.restaurantId = restaurantId;
         this.meals = meals;
     }
 
-    public int getRestaurant() {
+    public int getRestaurantId() {
         return restaurantId;
     }
 
@@ -25,7 +25,7 @@ public class MealsRestaurant {
 
     @Override
     public String toString() {
-        return "MealsRestaurant{" +
+        return "MealsRestaurantTo{" +
                 "restaurantID=" + restaurantId +
                 ", meals=" + meals +
                 '}';

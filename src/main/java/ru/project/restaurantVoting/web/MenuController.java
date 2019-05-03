@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.project.restaurantVoting.service.MealService;
-import ru.project.restaurantVoting.to.MealsRestaurant;
+import ru.project.restaurantVoting.to.MealsRestaurantTo;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class MenuController {
     private MealService service;
 
     @GetMapping
-    public List<MealsRestaurant> getAll() {
+    public List<MealsRestaurantTo> getAll() {
         log.info("getAll");
         return service.getAll();
     }

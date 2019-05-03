@@ -1,9 +1,8 @@
 package ru.project.restaurantVoting.service;
 
 import ru.project.restaurantVoting.model.Meal;
-import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.to.MealTo;
-import ru.project.restaurantVoting.to.MealsRestaurant;
+import ru.project.restaurantVoting.to.MealsRestaurantTo;
 import ru.project.restaurantVoting.util.exception.NotFoundException;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public interface MealService {
 
     List<Meal> getAllByRestaurant(int restaurantId);
 
-    List<MealsRestaurant> getAll();
+    List<MealsRestaurantTo> getAll();
 
     void update(MealTo mealTo);
 

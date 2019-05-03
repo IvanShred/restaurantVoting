@@ -3,23 +3,15 @@ package ru.project.restaurantVoting.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-import ru.project.restaurantVoting.model.Restaurant;
-import ru.project.restaurantVoting.model.User;
 import ru.project.restaurantVoting.model.Vote;
-import ru.project.restaurantVoting.repository.meal.CrudMealRepository;
 import ru.project.restaurantVoting.repository.meal.MealRepository;
-import ru.project.restaurantVoting.repository.user.CrudUserRepository;
 import ru.project.restaurantVoting.repository.user.UserRepository;
-import ru.project.restaurantVoting.repository.vote.CrudVoteRepository;
 import ru.project.restaurantVoting.repository.vote.VoteRepository;
-import ru.project.restaurantVoting.to.MealsRestaurant;
+import ru.project.restaurantVoting.to.MealsRestaurantTo;
 import ru.project.restaurantVoting.util.DateUtil;
 import ru.project.restaurantVoting.util.MealsUtil;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static ru.project.restaurantVoting.util.ValidationUtil.checkNotFound;
 
@@ -66,7 +58,7 @@ public class VoteServiceImpl implements VoteService {
 
 
     @Override
-    public List<MealsRestaurant> getMenu() {
+    public List<MealsRestaurantTo> getMenu() {
         return MealsUtil.getAllForRestaurants(mealRepository.getAll(DateUtil.getCurrentDate()));
     }
 

@@ -1,11 +1,9 @@
 package ru.project.restaurantVoting.service;
 
 import ru.project.restaurantVoting.model.Vote;
-import ru.project.restaurantVoting.to.MealsRestaurant;
+import ru.project.restaurantVoting.to.MealsRestaurantTo;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface VoteService {
 //    Vote create(Vote vote, int userId);
@@ -18,7 +16,7 @@ public interface VoteService {
 //
 //    Optional<Vote> getByUserId(int userId);
 
-    List<MealsRestaurant> getMenu();
+    List<MealsRestaurantTo> getMenu();
 
     Vote vote(int restaurantId, int userId);
 
