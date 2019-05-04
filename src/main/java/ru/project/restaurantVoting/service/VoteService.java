@@ -4,6 +4,7 @@ import ru.project.restaurantVoting.model.Vote;
 import ru.project.restaurantVoting.to.MealsRestaurantTo;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface VoteService {
 //    Vote create(Vote vote, int userId);
@@ -14,9 +15,9 @@ public interface VoteService {
 //
 //    Optional<Vote> getById(int id, int userId);
 //
-//    Optional<Vote> getByUserId(int userId);
+    Vote getByUserId(int userId);
 
-    List<MealsRestaurantTo> getMenu();
+//    List<MealsRestaurantTo> getMenu();
 
     Vote vote(int restaurantId, int userId);
 

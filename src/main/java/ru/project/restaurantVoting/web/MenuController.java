@@ -24,7 +24,7 @@ public class MenuController {
 
     @GetMapping
     public List<MealsRestaurantTo> getAll() {
-        log.info("getAll");
-        return service.getAll();
+        log.info("getMenu");
+        return service.getMenu();
     }
 }

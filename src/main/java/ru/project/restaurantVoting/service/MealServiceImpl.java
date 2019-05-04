@@ -45,8 +45,15 @@ public class MealServiceImpl implements MealService{
 
     @Cacheable("menu")
     @Override
-    public List<MealsRestaurantTo> getAll() {
+    public List<MealsRestaurantTo> getMenu() {
         return MealsUtil.getAllForRestaurants(repository.getAll(DateUtil.getCurrentDate()));
+    }
+
+    @CacheEvict(value = "menu", allEntries = true)
+    @Override
+    public void update(Meal meal) {
+        Assert.notNull(meal, "meal must not be null");
+        repository.save(meal);
     }
 
     @CacheEvict(value = "menu", allEntries = true)

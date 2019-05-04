@@ -12,6 +12,7 @@ import ru.project.restaurantVoting.util.DateUtil;
 import ru.project.restaurantVoting.util.MealsUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 import static ru.project.restaurantVoting.util.ValidationUtil.checkNotFound;
 
@@ -48,16 +49,17 @@ public class VoteServiceImpl implements VoteService {
 //        return crudRepository.findById(id, userId);
 //    }
 //
-//    @Override
-//    public Optional<Vote> getByUserId(int userId) {
-//        return crudRepository.findByUser(userId, DateUtil.getCurrentDate());
-//    }
-
-
     @Override
-    public List<MealsRestaurantTo> getMenu() {
-        return MealsUtil.getAllForRestaurants(mealRepository.getAll(DateUtil.getCurrentDate()));
+    public Vote getByUserId(int userId) {
+        //return voteRepository.getByUserId(userId, DateUtil.getCurrentDate());
+        return checkNotFound(voteRepository.getByUserId(userId, DateUtil.getCurrentDate()), "userId=" + userId);
     }
+
+
+//    @Override
+//    public List<MealsRestaurantTo> getMenu() {
+//        return MealsUtil.getAllForRestaurants(mealRepository.getAll(DateUtil.getCurrentDate()));
+//    }
 
     @Override
     @Transactional

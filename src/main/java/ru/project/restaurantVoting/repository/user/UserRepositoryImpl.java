@@ -35,7 +35,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 //
 //    @Override
-//    public List<User> getAll() {
+//    public List<User> getMenu() {
 //        return crudRepository.findAll(SORT_NAME_EMAIL);
 //    }
 }

@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import ru.project.restaurantVoting.AuthorizedUser;
 import ru.project.restaurantVoting.service.VoteService;
 
 @RestController
@@ -19,16 +21,16 @@ public class VoteController {
 
     @PutMapping(value = "/{restaurantId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void voteForRestaurant(@PathVariable int restaurantId) {
+    public void voteForRestaurant(@PathVariable int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser) {
         log.info("vote {}", restaurantId);
-        int userId = SecurityUtil.authUserId();
+        int userId = /*SecurityUtil.authUserId()*/authUser.getId();
         service.vote(restaurantId, userId);
     }
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void delete() {
-        int userId = SecurityUtil.authUserId();
+    public void delete(@AuthenticationPrincipal AuthorizedUser authUser) {
+        int userId = /*SecurityUtil.authUserId()*/authUser.getId();
         log.info("delete vote {}", userId);
         service.cancelVote(userId);
     }
