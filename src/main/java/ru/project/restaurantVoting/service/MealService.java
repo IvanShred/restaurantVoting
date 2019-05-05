@@ -20,5 +20,5 @@ public interface MealService {
 
     void update(MealTo mealTo);
 
-    Meal create(Meal meal);
+    Meal create(Meal meal, int restaurantId);
 }

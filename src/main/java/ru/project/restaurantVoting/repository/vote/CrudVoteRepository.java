@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantVoting.model.Vote;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Transactional(readOnly = true)
 public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
@@ -20,10 +19,6 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Override
     @Transactional
     Vote save(Vote vote);
-
-    //@Modifying
-//    @Query("SELECT v FROM  Vote v WHERE v.id=:id AND v.user.id=:userId")
-//    Optional<Vote> findById(@Param("id") int id, @Param("userId") int userId);
 
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.dateVote=:date")
     Vote findByUser(@Param("userId") int userId, @Param("date") LocalDate date);

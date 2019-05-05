@@ -38,7 +38,7 @@ public class MealController {
     public ResponseEntity<Meal> create(@RequestBody MealTo mealTo) {
         log.info("create {}", mealTo);
         checkNew(mealTo);
-        Meal created = service.create(MealsUtil.createNewFromTo(mealTo));
+        Meal created = service.create(MealsUtil.createNewFromTo(mealTo), mealTo.getRestaurantId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();

@@ -18,7 +18,7 @@ import java.util.List;
 import static ru.project.restaurantVoting.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
-public class MealServiceImpl implements MealService{
+public class MealServiceImpl implements MealService {
 
     private final MealRepository repository;
 
@@ -53,20 +53,22 @@ public class MealServiceImpl implements MealService{
     @Override
     public void update(Meal meal) {
         Assert.notNull(meal, "meal must not be null");
-        repository.save(meal);
+        if (meal.getRestaurant() != null) {
+            repository.save(meal, meal.getRestaurant().getId());
+        }
     }
 
     @CacheEvict(value = "menu", allEntries = true)
     @Override
     public void update(MealTo mealTo) {
         Meal meal = MealsUtil.updateFromTo(get(mealTo.getId()), mealTo);
-        repository.save(meal);
+        repository.save(meal, mealTo.getRestaurantId());
     }
 
     @CacheEvict(value = "menu", allEntries = true)
     @Override
-    public Meal create(Meal meal) {
+    public Meal create(Meal meal, int restaurantId) {
         Assert.notNull(meal, "meal must not be null");
-        return repository.save(meal);
+        return repository.save(meal, restaurantId);
     }
 }

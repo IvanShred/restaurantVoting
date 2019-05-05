@@ -6,14 +6,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class DateUtil {
-    public static final String DATE_PATTERN = "yyyy-MM-dd";
-    public static final int TIME_TO_REVOTE = 23;
+    public static final int TIME_TO_REVOTE = 11;
 
-    public static LocalDate getCurrentDate(){
+    public static LocalDate getCurrentDate() {
         return LocalDate.now();
     }
 
-    public static int getCurrentTime(){
+    public static int getCurrentTime() {
         return LocalDateTime.now().getHour();
     }
 

@@ -31,5 +31,5 @@ public interface CrudMealRepository extends JpaRepository<Meal, Integer> {
 
     @Modifying
     @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restaurantId AND m.dateMeal=:date ORDER BY m.price")
-    List<Meal> findAllByRestaurant(@Param("restaurantId") int restaurantId , @Param("date") LocalDate date);
+    List<Meal> findAllByRestaurant(@Param("restaurantId") int restaurantId, @Param("date") LocalDate date);
 }

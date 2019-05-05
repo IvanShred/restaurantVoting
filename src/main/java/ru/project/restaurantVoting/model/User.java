@@ -54,14 +54,6 @@ public class User extends AbstractNamedEntity implements Serializable {
     public User() {
     }
 
-//    public User(Integer userId) {
-//        this(userId, null, null, null, null, null, null);
-//    }
-
-//    public User(User u) {
-//        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRegistered(), u.getRoles());
-//    }
-
     public User(Integer id, String name, String email, String password, Role role, Role... roles) {
         this(id, name, email, password, true, new Date(), EnumSet.of(role, roles));
     }

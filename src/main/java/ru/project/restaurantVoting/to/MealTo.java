@@ -1,20 +1,15 @@
 package ru.project.restaurantVoting.to;
 
 import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
-import ru.project.restaurantVoting.util.DateUtil;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class MealTo extends BaseTo /*implements Serializable*/ {
-    //private static final long serialVersionUID = 1L;
+public class MealTo extends BaseTo {
 
     @NotNull
-    @DateTimeFormat(pattern = DateUtil.DATE_PATTERN)
     private LocalDate dateMeal;
 
     @NotBlank

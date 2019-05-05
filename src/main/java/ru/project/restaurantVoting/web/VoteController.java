@@ -19,18 +19,18 @@ public class VoteController {
     @Autowired
     private VoteService service;
 
-    @PutMapping(value = "/{restaurantId}")
+    @PutMapping(value = "/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void voteForRestaurant(@PathVariable int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser) {
         log.info("vote {}", restaurantId);
-        int userId = /*SecurityUtil.authUserId()*/authUser.getId();
+        int userId = authUser.getId();
         service.vote(restaurantId, userId);
     }
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@AuthenticationPrincipal AuthorizedUser authUser) {
-        int userId = /*SecurityUtil.authUserId()*/authUser.getId();
+        int userId = authUser.getId();
         log.info("delete vote {}", userId);
         service.cancelVote(userId);
     }

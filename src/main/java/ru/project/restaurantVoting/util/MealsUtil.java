@@ -1,7 +1,6 @@
 package ru.project.restaurantVoting.util;
 
 import ru.project.restaurantVoting.model.Meal;
-import ru.project.restaurantVoting.model.Restaurant;
 import ru.project.restaurantVoting.to.MealTo;
 import ru.project.restaurantVoting.to.MealsRestaurantTo;
 
@@ -23,7 +22,7 @@ public class MealsUtil {
     }
 
     public static Meal createNewFromTo(MealTo newMeal) {
-        return new Meal(null, newMeal.getDateMeal(), newMeal.getDescription(), newMeal.getPrice(), new Restaurant(newMeal.getRestaurantId()));
+        return new Meal(null, newMeal.getDateMeal(), newMeal.getDescription(), newMeal.getPrice()/*, new Restaurant(newMeal.getRestaurantId())*/);
     }
 
     public static Meal updateFromTo(Meal meal, MealTo mealTo) {
@@ -32,8 +31,4 @@ public class MealsUtil {
         meal.setPrice(mealTo.getPrice());
         return meal;
     }
-
-//    public static MealsRestaurantTo getForRestaurant(Restaurant restaurant, List<Meal> meals) {
-//        return new MealsRestaurantTo(restaurant, meals);
-//    }
 }

@@ -4,22 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantVoting.model.Meal;
-import ru.project.restaurantVoting.model.Restaurant;
-import ru.project.restaurantVoting.util.DateUtil;
+import ru.project.restaurantVoting.repository.restaurant.CrudRestaurantRepository;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public class MealRepositoryImpl implements MealRepository {
-    //private static final Sort SORT_NAME_EMAIL = new Sort(Sort.Direction.ASC, "name", "email");
 
     @Autowired
     private CrudMealRepository crudRepository;
 
+    @Autowired
+    private CrudRestaurantRepository crudRestaurantRepository;
+
     @Override
     @Transactional
-    public Meal save(Meal meal) {
+    public Meal save(Meal meal, int restaurantId) {
+        if (!meal.isNew() && get(meal.getId()) == null) {
+            return null;
+        }
+        meal.setRestaurant(crudRestaurantRepository.getOne(restaurantId));
         return crudRepository.save(meal);
     }
 

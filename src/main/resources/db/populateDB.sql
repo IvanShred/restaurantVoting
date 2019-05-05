@@ -9,7 +9,7 @@ FROM restaurants;
 DELETE
 FROM users;
 ALTER SEQUENCE global_seq
-  RESTART WITH 100000;
+RESTART WITH 100000;
 
 INSERT INTO users (name, email, password)
 VALUES ('User', 'user@yandex.ru', '{noop}password'),
@@ -35,5 +35,4 @@ VALUES (CURRENT_DATE, 'Кофе', 100002, 60),
        (CURRENT_DATE, 'Плов', 100003, 150);
 
 INSERT INTO vote (date_vote, user_id, restaurant_id)
-VALUES (CURRENT_DATE, 100000, 100002)/*,
-       (CURRENT_DATE, 100001, 100003)*/;
+VALUES (CURRENT_DATE, 100000, 100002);

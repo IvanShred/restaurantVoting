@@ -8,7 +8,6 @@ import java.time.LocalDate;
 public class Vote extends AbstractBaseEntity {
 
     @Column(name = "date_vote")
-//    @Temporal(TemporalType.DATE)
     private LocalDate dateVote;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,10 +24,6 @@ public class Vote extends AbstractBaseEntity {
     public Vote(LocalDate date, User user, Restaurant restaurant) {
         this(null, date, user, restaurant);
     }
-
-//    public Vote(Vote vote) {
-//        this(vote.getId(), vote.getDateVote(), vote.getUser(), vote.getRestaurantId());
-//    }
 
     public Vote(Integer id, LocalDate dateVote, User user, Restaurant restaurant) {
         super(id);

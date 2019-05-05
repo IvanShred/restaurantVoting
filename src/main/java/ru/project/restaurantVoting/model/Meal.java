@@ -1,8 +1,6 @@
 package ru.project.restaurantVoting.model;
 
 import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
-import ru.project.restaurantVoting.util.DateUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +14,6 @@ public class Meal extends AbstractBaseEntity {
 
     @Column(name = "date_meal", nullable = false)
     @NotNull
-    @DateTimeFormat(pattern = DateUtil.DATE_PATTERN)
     private LocalDate dateMeal;
 
     @Column(name = "description", nullable = false)
@@ -28,15 +25,15 @@ public class Meal extends AbstractBaseEntity {
     @Range(min = 10, max = 3000)
     private int price;
 
-    @ManyToOne(fetch = FetchType.LAZY/*EAGER*/)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
     public Meal() {
     }
 
-    public Meal(LocalDate dateMeal, String description, int price, Restaurant restaurant) {
-        this(null, dateMeal, description, price, restaurant);
+    public Meal(LocalDate dateMeal, String description, int price) {
+        this(null, dateMeal, description, price);
     }
 
     public Meal(Integer id, LocalDate dateMeal, String description, int price) {
