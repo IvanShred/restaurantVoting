@@ -1,0 +1,77 @@
+package ru.project.restaurantvoting.to;
+
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
+
+public class MealTo extends BaseTo {
+
+    @NotNull
+    private LocalDate dateMeal;
+
+    @NotBlank
+    @Size(min = 3, max = 200)
+    private String description;
+
+    @Range(min = 10, max = 3000)
+    private int price;
+
+    private int restaurantId;
+
+    public MealTo() {
+    }
+
+    public MealTo(Integer id, LocalDate dateMeal, String description, int price, int restaurantId) {
+        super(id);
+        this.dateMeal = dateMeal;
+        this.description = description;
+        this.price = price;
+        this.restaurantId = restaurantId;
+    }
+
+    public LocalDate getDateMeal() {
+        return dateMeal;
+    }
+
+    public void setDateMeal(LocalDate dateMeal) {
+        this.dateMeal = dateMeal;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    @Override
+    public String toString() {
+        return "MealTo{" +
+                "dateMeal=" + dateMeal +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", restaurantId=" + restaurantId +
+                ", id=" + id +
+                '}';
+    }
+}

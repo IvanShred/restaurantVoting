@@ -9,8 +9,8 @@ cache:
 
 # https://docs.travis-ci.com/user/database-setup/#PostgreSQL
 before_script:
-- psql -c 'create database restaurantVoting' -U postgres
-- psql -c 'create user "user"; grant all privileges on database restaurantVoting to "user"' -U postgres
+- psql -c 'create database restaurantvoting' -U postgres
+- psql -c 'create user "user"; grant all privileges on database restaurantvoting to "user"' -U postgres
 
 # https://docs.travis-ci.com/user/customizing-the-build#Building-Specific-Branches
 branches:

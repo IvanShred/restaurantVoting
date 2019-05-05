@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/IvanShred/restaurantVoting.svg?branch=master)](https://travis-ci.org/IvanShred/restaurantVoting)
+
 # restaurantVoting
 ### curl samples (application deployed in application context `restaurantVoting`).
 > For windows use `Git Bash`

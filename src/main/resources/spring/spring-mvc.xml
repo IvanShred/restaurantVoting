@@ -9,7 +9,7 @@
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
-                    <bean class="ru.project.restaurantVoting.web.json.JacksonObjectMapper"/>
+                    <bean class="ru.project.restaurantvoting.web.json.JacksonObjectMapper"/>
                 </property>
             </bean>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
