@@ -1,6 +1,8 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9c079bde902a4b70863dda8c8924c2fc)](https://www.codacy.com/app/IvanShred/restaurantVoting?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=IvanShred/restaurantVoting&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/IvanShred/restaurantVoting.svg?branch=master)](https://travis-ci.org/IvanShred/restaurantVoting)
 
 # restaurantVoting
+SoapUi file in the project root 
 ### curl samples (application deployed in application context `restaurantVoting`).
 > For windows use `Git Bash`
 

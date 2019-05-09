@@ -505,6 +505,12 @@
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>204</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
         <con:request name="update" id="3d010dac-379e-48bb-8b68-c515cb2a2436" mediaType="application/json" postQueryString="false">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
@@ -512,7 +518,7 @@
           <con:encoding>UTF-8</con:encoding>
           <con:endpoint>http://localhost:8080</con:endpoint>
           <con:request>{
-   "dateMeal": "2019-05-05",
+   "dateMeal": "2019-05-09",
    "description": "Обновленная еда",
    "price": 70,
    "restaurantId": 100003
@@ -572,7 +578,7 @@
           <con:encoding>UTF-8</con:encoding>
           <con:endpoint>http://localhost:8080</con:endpoint>
           <con:request>{
-   "dateMeal": "2019-05-05",
+   "dateMeal": "2019-05-09",
    "description": "Новая еда",
    "price": 70,
    "restaurantId": 100003
