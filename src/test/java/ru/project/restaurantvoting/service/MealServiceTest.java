@@ -5,9 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import ru.project.restaurantvoting.model.Meal;
-import ru.project.restaurantvoting.to.MealsRestaurantTo;
-
-import java.util.List;
 
 import static ru.project.restaurantvoting.MealTestData.*;
 import static ru.project.restaurantvoting.model.AbstractBaseEntity.START_SEQ;

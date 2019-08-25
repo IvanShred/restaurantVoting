@@ -2,17 +2,15 @@ package ru.project.restaurantvoting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.project.restaurantvoting.model.Meal;
 import ru.project.restaurantvoting.repository.meal.MealRepository;
 import ru.project.restaurantvoting.to.MealTo;
-import ru.project.restaurantvoting.to.MealsRestaurantTo;
-import ru.project.restaurantvoting.util.DateUtil;
 import ru.project.restaurantvoting.util.MealsUtil;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.project.restaurantvoting.util.ValidationUtil.checkNotFoundWithId;
@@ -40,7 +38,7 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public List<Meal> getAllByRestaurant(int restaurantId) {
-        return repository.getAllByRestaurant(restaurantId, DateUtil.getCurrentDate());
+        return repository.getAllByRestaurant(restaurantId, LocalDate.now());
     }
 
     @CacheEvict(value = "menu", allEntries = true)

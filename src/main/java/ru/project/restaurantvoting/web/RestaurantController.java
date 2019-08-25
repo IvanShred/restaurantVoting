@@ -7,14 +7,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.project.restaurantvoting.AuthorizedUser;
 import ru.project.restaurantvoting.model.Restaurant;
+import ru.project.restaurantvoting.model.Vote;
 import ru.project.restaurantvoting.service.RestaurantService;
+import ru.project.restaurantvoting.service.VoteService;
 import ru.project.restaurantvoting.to.RestaurantTo;
+import ru.project.restaurantvoting.to.VoteResponseTo;
 import ru.project.restaurantvoting.util.RestaurantUtil;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -26,6 +32,9 @@ public class RestaurantController {
 
     @Autowired
     private RestaurantService service;
+
+    @Autowired
+    private VoteService voteService;
 
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable int id) {
@@ -74,5 +83,16 @@ public class RestaurantController {
     public List<Restaurant> getAll() {
         log.info("get all");
         return service.getAll();
+    }
+
+    @PostMapping(value = "/{restaurantId}/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<VoteResponseTo> voteForRestaurant(@PathVariable int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser) {
+        log.info("vote {}", restaurantId);
+        int userId = authUser.getId();
+        VoteResponseTo created = voteService.vote(LocalDate.now(), restaurantId, userId);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 }

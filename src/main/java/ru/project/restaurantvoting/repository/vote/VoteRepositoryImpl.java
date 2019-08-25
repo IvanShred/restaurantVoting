@@ -22,8 +22,8 @@ public class VoteRepositoryImpl implements VoteRepository {
 
     @Override
     @Transactional
-    public Vote save(LocalDate date, int userId, int restaurantId) {
-        return crudRepository.save(new Vote(date, crudUserRepository.getOne(userId), crudRestaurantRepository.getOne(restaurantId)));
+    public Vote save(Integer voteId, LocalDate date, int userId, int restaurantId) {
+        return crudRepository.save(new Vote(voteId, date, crudUserRepository.getOne(userId), crudRestaurantRepository.getOne(restaurantId)));
     }
 
     @Override
