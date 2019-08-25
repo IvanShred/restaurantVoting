@@ -38,9 +38,8 @@ public class VoteServiceImpl implements VoteService {
         }
 
         Vote vote = voteRepository.save(id, date, userId, restaurantId);
-        Objects.requireNonNull(vote);
-        return new VoteResponseTo(vote.getId(), vote.getDateVote(),
-                vote.getUser().getId(), vote.getRestaurant().getId());
+
+        return new VoteResponseTo(vote.getId(), date, userId, restaurantId);
     }
 
     @Override

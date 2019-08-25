@@ -11,6 +11,7 @@ import ru.project.restaurantvoting.repository.restaurant.CrudRestaurantRepositor
 import ru.project.restaurantvoting.to.RestaurantTo;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.project.restaurantvoting.util.ValidationUtil.assureIdConsistent;
@@ -73,8 +74,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Cacheable("menu")
     @Override
-    public List<Restaurant> getMenu() {
-        return repository.getAllWithMeals();
+    public List<Restaurant> getMenu(LocalDate date) {
+
+        return repository.getAllWithMeals(date != null ? date : LocalDate.now());
     }
 
     @Cacheable("restaurants")

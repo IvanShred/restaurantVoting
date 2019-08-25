@@ -4,6 +4,7 @@ import ru.project.restaurantvoting.model.Restaurant;
 import ru.project.restaurantvoting.to.RestaurantTo;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RestaurantService {
@@ -20,7 +21,7 @@ public interface RestaurantService {
 
     Restaurant getWithMeals(int id);
 
-    List<Restaurant> getMenu();
+    List<Restaurant> getMenu(LocalDate date);
 
     List<Restaurant> getAll();
 }

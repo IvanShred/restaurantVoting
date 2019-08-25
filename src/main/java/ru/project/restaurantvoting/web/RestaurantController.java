@@ -68,9 +68,9 @@ public class RestaurantController {
     }
 
     @GetMapping("/menu")
-    public List<Restaurant> getMenu() {
+    public List<Restaurant> getMenu(@RequestParam(required = false) LocalDate date) {
         log.info("getMenu");
-        return service.getMenu();
+        return service.getMenu(date);
     }
 
     @GetMapping("/{id}/menu")

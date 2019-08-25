@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantvoting.model.Restaurant;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +37,8 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     Restaurant getWithMeals(int id);
 
     @EntityGraph(attributePaths = {"meals"}, type = EntityGraph.EntityGraphType.LOAD)
-    @Query("SELECT r FROM Restaurant r")
-    List<Restaurant> getAllWithMeals();
+    @Query("SELECT r FROM Restaurant r JOIN FETCH r.meals m WHERE m.dateMeal=?1")
+    List<Restaurant> getAllWithMeals(LocalDate date);
 
     @Override
     List<Restaurant> findAll();
