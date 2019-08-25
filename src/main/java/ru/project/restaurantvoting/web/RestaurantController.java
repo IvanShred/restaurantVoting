@@ -10,9 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.project.restaurantvoting.model.Restaurant;
-import ru.project.restaurantvoting.service.MealService;
 import ru.project.restaurantvoting.service.RestaurantService;
-import ru.project.restaurantvoting.to.MealsRestaurantTo;
 import ru.project.restaurantvoting.to.RestaurantTo;
 import ru.project.restaurantvoting.util.RestaurantUtil;
 
@@ -21,15 +19,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = RestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+//@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class RestaurantController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     public static final String REST_URL = "/rest/restaurants";
 
     @Autowired
     private RestaurantService service;
-
-    @Autowired
-    private MealService mealService;
 
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable int id) {
@@ -56,15 +52,27 @@ public class RestaurantController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void update(@RequestBody RestaurantTo restaurantTo, @PathVariable int id) {
         log.info("update {} with id={}", restaurantTo, id);
         service.update(restaurantTo, id);
     }
 
     @GetMapping("/menu")
-    public List<MealsRestaurantTo> getAll() {
+    public List<Restaurant> getMenu() {
         log.info("getMenu");
-        return mealService.getMenu();
+        return service.getMenu();
+    }
+
+    @GetMapping("/{id}/menu")
+    public Restaurant getWithMeals(@PathVariable int id) {
+        log.info("get {}", id);
+        return service.getWithMeals(id);
+    }
+
+    @GetMapping()
+    public List<Restaurant> getAll() {
+        log.info("get all");
+        return service.getAll();
     }
 }

@@ -4,6 +4,8 @@ import ru.project.restaurantvoting.model.Restaurant;
 import ru.project.restaurantvoting.to.RestaurantTo;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 
+import java.util.List;
+
 public interface RestaurantService {
 
     Restaurant get(int id) throws NotFoundException;
@@ -17,4 +19,8 @@ public interface RestaurantService {
     Restaurant create(Restaurant restaurant);
 
     Restaurant getWithMeals(int id);
+
+    List<Restaurant> getMenu();
+
+    List<Restaurant> getAll();
 }

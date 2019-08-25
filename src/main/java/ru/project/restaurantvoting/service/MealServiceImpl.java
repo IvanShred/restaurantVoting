@@ -43,12 +43,6 @@ public class MealServiceImpl implements MealService {
         return repository.getAllByRestaurant(restaurantId, DateUtil.getCurrentDate());
     }
 
-    @Cacheable("menu")
-    @Override
-    public List<MealsRestaurantTo> getMenu() {
-        return MealsUtil.getAllForRestaurants(repository.getAll(DateUtil.getCurrentDate()));
-    }
-
     @CacheEvict(value = "menu", allEntries = true)
     @Override
     public void update(Meal meal) {

@@ -43,13 +43,6 @@ class MealServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    void getMenu() throws Exception {
-        List<MealsRestaurantTo> menu = service.getMenu();
-        assertMatch(menu.get(1).getMeals(), MEAL1, MEAL2, MEAL3, MEAL4);
-        assertMatch(menu.get(0).getMeals(), MEAL5, MEAL6, MEAL7, MEAL8);
-    }
-
-    @Test
     void update() throws Exception {
         Meal updated = getUpdated();
         service.update(updated);
