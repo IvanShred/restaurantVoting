@@ -9,7 +9,6 @@ import ru.project.restaurantvoting.to.VoteResponseTo;
 import ru.project.restaurantvoting.util.DateUtil;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 import static ru.project.restaurantvoting.util.ValidationUtil.checkNotFound;
 
@@ -20,8 +19,11 @@ public class VoteServiceImpl implements VoteService {
     private VoteRepository voteRepository;
 
     @Override
-    public Vote getByUserId(int userId) {
-        return checkNotFound(voteRepository.getByUserId(userId, LocalDate.now()), "userId=" + userId);
+    public VoteResponseTo getByUserId(int userId, LocalDate date) {
+        Vote vote = checkNotFound(voteRepository.getByUserId(userId, date != null ? date : LocalDate.now()),
+                "userId=" + userId);
+
+        return new VoteResponseTo(vote.getId(), vote.getDateVote(), vote.getUser().getId(), vote.getRestaurant().getId());
     }
 
 
@@ -40,11 +42,5 @@ public class VoteServiceImpl implements VoteService {
         Vote vote = voteRepository.save(id, date, userId, restaurantId);
 
         return new VoteResponseTo(vote.getId(), date, userId, restaurantId);
-    }
-
-    @Override
-    @Transactional
-    public void cancelVote(int userId) {
-        checkNotFound(voteRepository.delete(userId, LocalDate.now()), "userId=" + userId);
     }
 }

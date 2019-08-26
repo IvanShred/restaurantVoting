@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.project.restaurantvoting.AuthorizedUser;
 import ru.project.restaurantvoting.model.Restaurant;
-import ru.project.restaurantvoting.model.Vote;
 import ru.project.restaurantvoting.service.RestaurantService;
 import ru.project.restaurantvoting.service.VoteService;
 import ru.project.restaurantvoting.to.RestaurantTo;
@@ -25,7 +24,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = RestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-//@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class RestaurantController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     public static final String REST_URL = "/rest/restaurants";
@@ -43,6 +41,7 @@ public class RestaurantController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Restaurant> create(@RequestBody RestaurantTo restaurantTo) {
         log.info("create {}", restaurantTo);
         Restaurant created = service.create(RestaurantUtil.createNewFromTo(restaurantTo));
@@ -54,6 +53,7 @@ public class RestaurantController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@PathVariable int id) {
         log.info("delete {}", id);
         service.delete(id);

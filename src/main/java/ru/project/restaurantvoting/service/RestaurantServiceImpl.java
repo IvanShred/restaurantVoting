@@ -3,7 +3,6 @@ package ru.project.restaurantvoting.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.project.restaurantvoting.model.Restaurant;
@@ -52,7 +51,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @CacheEvict(value = {"menu", "restaurants"}, allEntries = true)
     @Override
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public void update(RestaurantTo restaurantTo, int restaurantId) {
         assureIdConsistent(restaurantTo, restaurantId);
         Restaurant restaurant = new Restaurant(restaurantId, restaurantTo.getName(), restaurantTo.getAddress());
