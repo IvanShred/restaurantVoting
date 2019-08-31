@@ -6,7 +6,8 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "address"}, name = "restaurants_unique_name_address_idx")})
+@Table(name = "restaurants",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "address"}, name = "restaurants_unique_name_address_idx")})
 public class Restaurant extends AbstractNamedEntity {
 
     @Column(name = "address", nullable = false)
@@ -14,7 +15,7 @@ public class Restaurant extends AbstractNamedEntity {
     @Size(min = 5, max = 100)
     private String address;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OrderBy("dateMeal DESC")
     protected List<Meal> meals;
 

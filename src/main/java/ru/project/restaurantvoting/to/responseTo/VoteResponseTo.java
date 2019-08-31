@@ -1,4 +1,6 @@
-package ru.project.restaurantvoting.to;
+package ru.project.restaurantvoting.to.responseTo;
+
+import ru.project.restaurantvoting.to.BaseTo;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;

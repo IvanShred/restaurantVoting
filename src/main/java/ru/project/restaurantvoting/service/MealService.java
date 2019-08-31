@@ -1,13 +1,14 @@
 package ru.project.restaurantvoting.service;
 
 import ru.project.restaurantvoting.model.Meal;
+import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
 import ru.project.restaurantvoting.to.MealTo;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 
 import java.util.List;
 
 public interface MealService {
-    Meal get(int id) throws NotFoundException;
+    MealResponseTo get(int id) throws NotFoundException;
 
     void delete(int id) throws NotFoundException;
 
@@ -17,5 +18,5 @@ public interface MealService {
 
     void update(MealTo mealTo);
 
-    Meal create(Meal meal, int restaurantId);
+    MealResponseTo create(Meal meal, int mealTypeId,int restaurantId);
 }

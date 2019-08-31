@@ -15,7 +15,7 @@ import ru.project.restaurantvoting.model.Restaurant;
 import ru.project.restaurantvoting.service.RestaurantService;
 import ru.project.restaurantvoting.service.VoteService;
 import ru.project.restaurantvoting.to.RestaurantTo;
-import ru.project.restaurantvoting.to.VoteResponseTo;
+import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
 import ru.project.restaurantvoting.util.RestaurantUtil;
 
 import java.net.URI;

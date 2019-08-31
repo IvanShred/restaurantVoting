@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantvoting.model.Vote;
 import ru.project.restaurantvoting.repository.vote.VoteRepository;
-import ru.project.restaurantvoting.to.VoteResponseTo;
+import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
 import ru.project.restaurantvoting.util.DateUtil;
 
 import java.time.LocalDate;

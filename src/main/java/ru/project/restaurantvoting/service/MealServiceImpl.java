@@ -3,9 +3,11 @@ package ru.project.restaurantvoting.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.project.restaurantvoting.model.Meal;
 import ru.project.restaurantvoting.repository.meal.MealRepository;
+import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
 import ru.project.restaurantvoting.to.MealTo;
 import ru.project.restaurantvoting.util.MealsUtil;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
@@ -26,8 +28,8 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public Meal get(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.get(id), id);
+    public MealResponseTo get(int id) throws NotFoundException {
+        return MealsUtil.convertToResponse(checkNotFoundWithId(repository.get(id), id));
     }
 
     @CacheEvict(value = "menu", allEntries = true)
@@ -46,21 +48,23 @@ public class MealServiceImpl implements MealService {
     public void update(Meal meal) {
         Assert.notNull(meal, "meal must not be null");
         if (meal.getRestaurant() != null) {
-            repository.save(meal, meal.getRestaurant().getId());
+            repository.save(meal, meal.getMealType().getId(), meal.getRestaurant().getId());
         }
     }
 
     @CacheEvict(value = "menu", allEntries = true)
     @Override
     public void update(MealTo mealTo) {
-        Meal meal = MealsUtil.updateFromTo(get(mealTo.getId()), mealTo);
-        repository.save(meal, mealTo.getRestaurantId());
+        int mealId = mealTo.getId();
+        Meal meal = MealsUtil.updateFromTo(checkNotFoundWithId(repository.get(mealId), mealId), mealTo);
+        repository.save(meal, mealTo.getMealTypeId(), mealTo.getRestaurantId());
     }
 
     @CacheEvict(value = "menu", allEntries = true)
     @Override
-    public Meal create(Meal meal, int restaurantId) {
+    @Transactional
+    public MealResponseTo create(Meal meal, int mealTypeId, int restaurantId) {
         Assert.notNull(meal, "meal must not be null");
-        return repository.save(meal, restaurantId);
+        return MealsUtil.convertToResponse(repository.save(meal, mealTypeId, restaurantId));
     }
 }

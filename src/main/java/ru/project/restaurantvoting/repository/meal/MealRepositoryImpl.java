@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantvoting.model.Meal;
+import ru.project.restaurantvoting.repository.mealType.CrudMealTypeRepository;
 import ru.project.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
 
 import java.time.LocalDate;
@@ -18,13 +19,17 @@ public class MealRepositoryImpl implements MealRepository {
     @Autowired
     private CrudRestaurantRepository crudRestaurantRepository;
 
+    @Autowired
+    private CrudMealTypeRepository crudMealTypeRepository;
+
     @Override
     @Transactional
-    public Meal save(Meal meal, int restaurantId) {
+    public Meal save(Meal meal, int mealTypeId, int restaurantId) {
         if (!meal.isNew() && get(meal.getId()) == null) {
             return null;
         }
         meal.setRestaurant(crudRestaurantRepository.getOne(restaurantId));
+        meal.setMealType(crudMealTypeRepository.getOne(mealTypeId));
         return crudRepository.save(meal);
     }
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.project.restaurantvoting.model.Meal;
 import ru.project.restaurantvoting.service.MealService;
+import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
 import ru.project.restaurantvoting.to.MealTo;
 import ru.project.restaurantvoting.util.MealsUtil;
 
@@ -29,16 +30,16 @@ public class MealController {
     private MealService service;
 
     @GetMapping("/{id}")
-    public Meal get(@PathVariable int id) {
+    public MealResponseTo get(@PathVariable int id) {
         log.info("get {}", id);
         return service.get(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Meal> create(@RequestBody MealTo mealTo) {
+    public ResponseEntity<MealResponseTo> create(@RequestBody MealTo mealTo) {
         log.info("create {}", mealTo);
         checkNew(mealTo);
-        Meal created = service.create(MealsUtil.createNewFromTo(mealTo), mealTo.getRestaurantId());
+        MealResponseTo created = service.create(MealsUtil.createNewFromTo(mealTo), mealTo.getMealTypeId(), mealTo.getRestaurantId());
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();

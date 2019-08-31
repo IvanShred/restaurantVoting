@@ -1,6 +1,6 @@
 package ru.project.restaurantvoting.service;
 
-import ru.project.restaurantvoting.to.VoteResponseTo;
+import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
 
 import java.time.LocalDate;
 

@@ -1,29 +1,26 @@
-package ru.project.restaurantvoting.to;
+package ru.project.restaurantvoting.to.responseTo;
 
-import org.hibernate.validator.constraints.Range;
+import ru.project.restaurantvoting.to.BaseTo;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class MealTo extends BaseTo {
+public class MealResponseTo extends BaseTo {
 
-    @NotNull
     private LocalDate dateMeal;
 
-    private int mealTypeId;
+    private String description;
 
-    @Range(min = 10, max = 3000)
     private int price;
 
     private int restaurantId;
 
-    public MealTo() {
+    public MealResponseTo() {
     }
 
-    public MealTo(Integer id, LocalDate dateMeal, int mealTypeId, int price, int restaurantId) {
+    public MealResponseTo(Integer id, LocalDate dateMeal, String description, int price, int restaurantId) {
         super(id);
         this.dateMeal = dateMeal;
-        this.mealTypeId = mealTypeId;
+        this.description = description;
         this.price = price;
         this.restaurantId = restaurantId;
     }
@@ -36,12 +33,12 @@ public class MealTo extends BaseTo {
         this.dateMeal = dateMeal;
     }
 
-    public int getMealTypeId() {
-        return mealTypeId;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMealTypeId(int mealTypeId) {
-        this.mealTypeId = mealTypeId;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getPrice() {
@@ -62,9 +59,9 @@ public class MealTo extends BaseTo {
 
     @Override
     public String toString() {
-        return "MealTo{" +
+        return "MealResponseTo{" +
                 "dateMeal=" + dateMeal +
-                ", mealTypeId='" + mealTypeId + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
                 ", restaurantId=" + restaurantId +
                 ", id=" + id +

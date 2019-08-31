@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.project.restaurantvoting.AuthorizedUser;
 import ru.project.restaurantvoting.service.VoteService;
-import ru.project.restaurantvoting.to.VoteResponseTo;
+import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
 
 import java.time.LocalDate;
 

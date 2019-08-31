@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -17,10 +15,9 @@ public class Meal extends AbstractBaseEntity {
     @NotNull
     private LocalDate dateMeal;
 
-    @Column(name = "description", nullable = false)
-    @NotBlank
-    @Size(min = 3, max = 200)
-    private String description;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "meal_id", nullable = false)
+    private MealType mealType;
 
     @Column(name = "price", nullable = false)
     @Range(min = 10, max = 3000)
@@ -34,21 +31,16 @@ public class Meal extends AbstractBaseEntity {
     public Meal() {
     }
 
-    public Meal(LocalDate dateMeal, String description, int price) {
-        this(null, dateMeal, description, price);
-    }
-
-    public Meal(Integer id, LocalDate dateMeal, String description, int price) {
+    public Meal(Integer id, LocalDate dateMeal, int price) {
         super(id);
         this.dateMeal = dateMeal;
-        this.description = description;
         this.price = price;
     }
 
-    public Meal(Integer id, LocalDate dateMeal, String description, int price, Restaurant restaurant) {
+    public Meal(Integer id, LocalDate dateMeal, MealType mealType, int price, Restaurant restaurant) {
         super(id);
         this.dateMeal = dateMeal;
-        this.description = description;
+        this.mealType = mealType;
         this.price = price;
         this.restaurant = restaurant;
     }
@@ -57,8 +49,8 @@ public class Meal extends AbstractBaseEntity {
         return dateMeal;
     }
 
-    public String getDescription() {
-        return description;
+    public MealType getMealType() {
+        return mealType;
     }
 
     public int getPrice() {
@@ -70,8 +62,8 @@ public class Meal extends AbstractBaseEntity {
         this.dateMeal = dateMeal;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMealType(MealType mealType) {
+        this.mealType = mealType;
     }
 
     public void setPrice(int price) {
@@ -91,7 +83,7 @@ public class Meal extends AbstractBaseEntity {
         return "Meal{" +
                 "id=" + id +
                 ", dateMeal=" + dateMeal +
-                ", description='" + description + '\'' +
+                ", mealType='" + mealType + '\'' +
                 ", price=" + price +
                 '}';
     }
