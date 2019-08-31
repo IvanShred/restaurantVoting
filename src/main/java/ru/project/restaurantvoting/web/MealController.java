@@ -23,7 +23,9 @@ import static ru.project.restaurantvoting.util.ValidationUtil.checkNew;
 @RestController
 @RequestMapping(value = MealController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MealController {
+
     private final Logger log = LoggerFactory.getLogger(getClass());
+
     public static final String REST_URL = "/rest/meals";
 
     @Autowired

@@ -18,7 +18,9 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping(value = VoteController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class VoteController {
+
     private final Logger log = LoggerFactory.getLogger(getClass());
+
     static final String REST_URL = "/rest/vote";
 
     @Autowired

@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantvoting.model.User;
 
+import java.util.Optional;
+
 @Transactional(readOnly = true)
 public interface CrudUserRepository extends JpaRepository<User, Integer> {
     @Transactional
@@ -18,7 +20,7 @@ public interface CrudUserRepository extends JpaRepository<User, Integer> {
     @Transactional
     User save(User user);
 
-    User getByEmail(String email);
+    Optional<User> getByEmail(String email);
 
     @Override
     User getOne(Integer id);
