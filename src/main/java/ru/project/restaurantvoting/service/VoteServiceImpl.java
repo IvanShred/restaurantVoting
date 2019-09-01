@@ -3,9 +3,9 @@ package ru.project.restaurantvoting.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.project.restaurantvoting.model.Vote;
-import ru.project.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
-import ru.project.restaurantvoting.repository.user.CrudUserRepository;
-import ru.project.restaurantvoting.repository.vote.CrudVoteRepository;
+import ru.project.restaurantvoting.repository.CrudRestaurantRepository;
+import ru.project.restaurantvoting.repository.CrudUserRepository;
+import ru.project.restaurantvoting.repository.CrudVoteRepository;
 import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
 import ru.project.restaurantvoting.util.DateUtil;
 import ru.project.restaurantvoting.util.VoteUtil;
@@ -33,7 +33,7 @@ public class VoteServiceImpl implements VoteService {
     public VoteResponseTo getByUserId(int userId, LocalDate date) {
 
         Vote vote = crudVoteRepository.findByUser(userId, date != null ? date : LocalDate.now())
-                .orElseThrow(() -> new NotFoundException(String.format("Not found entity with userId=%d", userId)));
+                .orElseThrow(() -> new NotFoundException(String.format("Not found vote with userId=%d", userId)));
 
         return VoteUtil.convertToResponse(vote.getId(), vote.getDateVote(), vote.getUser().getId(), vote.getRestaurant().getId());
     }

@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.project.restaurantvoting.model.Meal;
-import ru.project.restaurantvoting.repository.meal.CrudMealRepository;
-import ru.project.restaurantvoting.repository.mealType.CrudMealTypeRepository;
-import ru.project.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
+import ru.project.restaurantvoting.repository.CrudMealRepository;
+import ru.project.restaurantvoting.repository.CrudMealTypeRepository;
+import ru.project.restaurantvoting.repository.CrudRestaurantRepository;
 import ru.project.restaurantvoting.to.MealTo;
 import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
 import ru.project.restaurantvoting.util.MealsUtil;
@@ -39,7 +39,7 @@ public class MealServiceImpl implements MealService {
     @Override
     public MealResponseTo get(int id) throws NotFoundException {
         Meal meal = crudMealRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(String.format("Not found entity with id=%d", id)));
+                .orElseThrow(() -> new NotFoundException(String.format("Not found meal with id=%d", id)));
 
         return MealsUtil.convertToResponse(meal);
     }
@@ -57,27 +57,11 @@ public class MealServiceImpl implements MealService {
 
     @CacheEvict(value = "menu", allEntries = true)
     @Override
-    public void update(Meal meal) {
-        Assert.notNull(meal, "meal must not be null");
-
-        if (meal.getRestaurant() != null && meal.getMealType() != null) {
-            if (!meal.isNew() && get(meal.getId()) == null) {
-                return;
-            }
-
-            Meal mealToSave = prepareMealToSave(meal, meal.getMealType().getId(), meal.getRestaurant().getId());
-
-            crudMealRepository.save(mealToSave);
-        }
-    }
-
-    @CacheEvict(value = "menu", allEntries = true)
-    @Override
     public void update(MealTo mealTo) {
         int mealId = mealTo.getId();
 
         Meal meal = MealsUtil.updateFromTo(crudMealRepository.findById(mealId)
-                .orElseThrow(() -> new NotFoundException(String.format("Not found entity with id=%d", mealId))), mealTo);
+                .orElseThrow(() -> new NotFoundException(String.format("Not found meal with id=%d", mealId))), mealTo);
 
         Meal mealToSave = prepareMealToSave(meal, mealTo.getMealTypeId(), mealTo.getRestaurantId());
 

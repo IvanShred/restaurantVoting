@@ -1,4 +1,4 @@
-package ru.project.restaurantvoting.repository.user;
+package ru.project.restaurantvoting.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Transactional(readOnly = true)
 public interface CrudUserRepository extends JpaRepository<User, Integer> {
+
     @Transactional
     @Modifying
     @Query("DELETE FROM User u WHERE u.id=:id")

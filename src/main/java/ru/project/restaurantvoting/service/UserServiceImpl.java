@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.project.restaurantvoting.AuthorizedUser;
 import ru.project.restaurantvoting.model.User;
-import ru.project.restaurantvoting.repository.user.CrudUserRepository;
+import ru.project.restaurantvoting.repository.CrudUserRepository;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 
 import static ru.project.restaurantvoting.util.UserUtil.prepareToSave;
@@ -38,14 +38,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(crudUserRepository.delete(id) != 0, id);
-    }
-
-    @Override
-    public User getByEmail(String email) throws NotFoundException {
-        Assert.notNull(email, "email must not be null");
-
-        return crudUserRepository.getByEmail(email)
-                .orElseThrow(() -> new NotFoundException(String.format("Not found entity with email=%s", email)));
     }
 
     @Override

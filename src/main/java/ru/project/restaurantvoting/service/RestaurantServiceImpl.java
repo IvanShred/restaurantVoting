@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.project.restaurantvoting.model.Restaurant;
-import ru.project.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
+import ru.project.restaurantvoting.repository.CrudRestaurantRepository;
 import ru.project.restaurantvoting.to.RestaurantTo;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 
@@ -28,25 +28,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant get(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.findById(id).orElse(null), id);
+        return repository.findById(id)
+                        .orElseThrow(() -> new NotFoundException(String.format("Not found restaurant with id=%d", id)));
     }
 
     @CacheEvict(value = {"menu", "restaurants"}, allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id) != 0, id);
-    }
-
-    @CacheEvict(value = {"menu", "restaurants"}, allEntries = true)
-    @Override
-    public void update(Restaurant restaurant) {
-        Assert.notNull(restaurant, "restaurant must not be null");
-        int id = restaurant.getId();
-
-        if (repository.findById(id).isEmpty()) {
-            throw new NotFoundException(String.format("Not found entity with id = %s", id));
-        }
-        repository.save(restaurant);
     }
 
     @CacheEvict(value = {"menu", "restaurants"}, allEntries = true)
@@ -67,7 +56,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant getWithMeals(int id) {
-        return checkNotFoundWithId(repository.getWithMeals(id), id);
+        return repository.getWithMeals(id)
+                .orElseThrow(() -> new NotFoundException(String.format("Not found restaurant with id=%d", id)));
     }
 
     @Cacheable("menu")

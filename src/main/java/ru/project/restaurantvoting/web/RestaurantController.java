@@ -89,7 +89,7 @@ public class RestaurantController {
 
     @PostMapping(value = "/{restaurantId}/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VoteResponseTo> voteForRestaurant(@PathVariable int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser) {
-        log.info("vote {}", restaurantId);
+        log.info("vote for {}", restaurantId);
         int userId = authUser.getId();
         VoteResponseTo created = voteService.vote(LocalDate.now(), restaurantId, userId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()

@@ -13,8 +13,6 @@ public interface RestaurantService {
 
     void delete(int id) throws NotFoundException;
 
-    void update(Restaurant restaurant);
-
     void update(RestaurantTo restaurantTo, int restaurantId);
 
     Restaurant create(Restaurant restaurant);

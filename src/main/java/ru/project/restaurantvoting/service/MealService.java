@@ -14,8 +14,6 @@ public interface MealService {
 
     List<Meal> getAllByRestaurant(int restaurantId);
 
-    void update(Meal meal);
-
     void update(MealTo mealTo);
 
     MealResponseTo create(Meal meal, int mealTypeId,int restaurantId);

@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "vote")
+@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_vote"},
+        name = "vote_unique_userid_datevote_idx")})
 public class Vote extends AbstractBaseEntity {
 
     @Column(name = "date_vote")

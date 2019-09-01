@@ -67,7 +67,7 @@ CREATE TABLE meals
   FOREIGN KEY (restaurant_id) REFERENCES RESTAURANTS (id)
     ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX vote_unique_datemeal_mealid_restaurantid_idx
+CREATE UNIQUE INDEX meals_unique_datemeal_mealid_restaurantid_idx
   ON MEALS (date_meal, restaurant_id, meal_id);
 
 CREATE TABLE vote
