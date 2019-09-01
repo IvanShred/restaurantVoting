@@ -37,7 +37,7 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     Optional<Restaurant> getWithMeals(int id);
 
     @EntityGraph(attributePaths = {"meals"}, type = EntityGraph.EntityGraphType.LOAD)
-    @Query("SELECT r FROM Restaurant r JOIN FETCH r.meals m WHERE m.dateMeal=?1")
+    @Query("SELECT r FROM Restaurant r JOIN FETCH r.meals m WHERE m.dateMeal=?1 ORDER BY r.id")
     List<Restaurant> getAllWithMeals(LocalDate date);
 
     @Override

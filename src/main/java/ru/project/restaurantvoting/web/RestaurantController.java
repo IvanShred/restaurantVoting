@@ -20,6 +20,7 @@ import ru.project.restaurantvoting.util.RestaurantUtil;
 
 import java.net.URI;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -91,7 +92,7 @@ public class RestaurantController {
     public ResponseEntity<VoteResponseTo> voteForRestaurant(@PathVariable int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser) {
         log.info("vote for {}", restaurantId);
         int userId = authUser.getId();
-        VoteResponseTo created = voteService.vote(LocalDate.now(), restaurantId, userId);
+        VoteResponseTo created = voteService.vote(LocalTime.now(), restaurantId, userId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();

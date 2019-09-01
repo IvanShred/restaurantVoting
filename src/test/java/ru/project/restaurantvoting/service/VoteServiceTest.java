@@ -2,12 +2,13 @@ package ru.project.restaurantvoting.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.project.restaurantvoting.model.Vote;
-import ru.project.restaurantvoting.util.DateUtil;
+import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
 import ru.project.restaurantvoting.util.exception.ChangeVoteException;
-import ru.project.restaurantvoting.util.exception.NotFoundException;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.project.restaurantvoting.VoteTestData.*;
 
 class VoteServiceTest extends AbstractServiceTest {
@@ -17,25 +18,27 @@ class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     void vote() {
-//        Vote vote = service.vote(RESTAURANT_ID, ADMIN_ID);
-//        assertMatch(service.getByUserId(ADMIN_ID), vote);
+        VoteResponseTo vote = service.vote(LocalTime.of(10, 59), RESTAURANT_ID, ADMIN_ID);
+
+        assertNotNull(vote);
+        assertEquals(RESTAURANT_ID, vote.getRestaurantId());
+        assertEquals(ADMIN_ID, vote.getUserId());
     }
 
     @Test
-    void cancelVote() {
-//        service.cancelVote(USER_ID);
-//        assertThrows(NotFoundException.class, () ->
-//                service.getByUserId(USER_ID));
-}
+    void voteAfterTime() {
+        assertThrows(ChangeVoteException.class, () ->
+                service.vote(LocalTime.of(11, 1), RESTAURANT_ID, ADMIN_ID));
 
-//    @Test
-//    void reVote() {
-//        if (DateUtil.TIME_TO_REVOTE < DateUtil.getCurrentTime()) {
-////            assertThrows(ChangeVoteException.class, () ->
-////                    service.vote(RESTAURANT_ID, USER_ID));
-//        } else {
-////            Vote vote = service.vote(RESTAURANT_ID, USER_ID);
-////            assertMatch(service.getByUserId(USER_ID), vote);
-//        }
-//    }
+    }
+
+
+    @Test
+    void getByUserId() {
+        VoteResponseTo vote = service.getByUserId(USER_ID, LocalDate.now());
+
+        assertNotNull(vote);
+        assertEquals(USER_ID, vote.getUserId());
+        assertEquals(LocalDate.now(), vote.getDateVote());
+    }
 }

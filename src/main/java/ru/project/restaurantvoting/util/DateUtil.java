@@ -10,8 +10,8 @@ import java.time.LocalTime;
 public class DateUtil {
     public static final LocalTime TIME_TO_REVOTE = LocalTime.of(11, 0);
 
-    public static void checkTime() {
-        if (LocalTime.now().isAfter(TIME_TO_REVOTE)) {
+    public static void checkTime(LocalTime time) {
+        if (time.isAfter(TIME_TO_REVOTE)) {
             throw new ChangeVoteException("Unable to vote after " + TIME_TO_REVOTE);
         }
     }

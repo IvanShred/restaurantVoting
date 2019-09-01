@@ -12,6 +12,7 @@ import ru.project.restaurantvoting.util.VoteUtil;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Service
 public class VoteServiceImpl implements VoteService {
@@ -41,8 +42,8 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     @Transactional
-    public VoteResponseTo vote(LocalDate date, int restaurantId, int userId) {
-        DateUtil.checkTime();
+    public VoteResponseTo vote(LocalTime time, int restaurantId, int userId) {
+        DateUtil.checkTime(time);
 
         Vote voteFromDb = crudVoteRepository.findByUser(userId, LocalDate.now())
                 .orElse(null);
@@ -53,8 +54,8 @@ public class VoteServiceImpl implements VoteService {
         }
 
         Vote vote = crudVoteRepository.save(
-                new Vote(id, date, crudUserRepository.getOne(userId), crudRestaurantRepository.getOne(restaurantId)));
+                new Vote(id, LocalDate.now(), crudUserRepository.getOne(userId), crudRestaurantRepository.getOne(restaurantId)));
 
-        return VoteUtil.convertToResponse(vote.getId(), date, userId, restaurantId);
+        return VoteUtil.convertToResponse(vote.getId(), LocalDate.now(), userId, restaurantId);
     }
 }
