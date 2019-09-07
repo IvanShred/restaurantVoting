@@ -49,6 +49,10 @@ public class MealTestData {
         return new MealTo(MEAL1_ID, LocalDate.now(), MEAL_TYPE3.getId(), 150, RESTAURANT2.getId());
     }
 
+    public static void assertMatch(Meal actual, Meal expected) {
+        assertThat(actual).isEqualTo(expected);
+    }
+
     public static void assertMatch(Iterable<Meal> actual, Meal... expected) {
         assertMatch(actual, List.of(expected));
     }
