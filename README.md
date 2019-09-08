@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/IvanShred/restaurantVoting.svg?branch=master)](https://travis-ci.org/IvanShred/restaurantVoting)
 
 # restaurantVoting
-### curl samples (application deployed in application context `restaurantVoting`).
+### curl samples (application deployed in application context `restaurantVoting`)
 > For windows use `Git Bash`
 
 #### get Menu
@@ -35,7 +35,7 @@
 #### create Restaurant
 `curl -s -X POST -d '{"name": "Новые ресторан", "address": "ул. Новая, 5"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/restaurantVoting/rest/restaurants --user admin@gmail.com:admin`
 
-#### delete Meal
+#### delete Restaurant
 `curl -s -X DELETE http://localhost:8080/restaurantVoting/rest/restaurants/100002 --user admin@gmail.com:admin`
 
 #### update Restaurant

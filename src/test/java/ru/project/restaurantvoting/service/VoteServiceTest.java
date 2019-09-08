@@ -2,7 +2,7 @@ package ru.project.restaurantvoting.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
+import ru.project.restaurantvoting.to.response.VoteResponseTo;
 import ru.project.restaurantvoting.util.exception.ChangeVoteException;
 
 import java.time.LocalDate;

@@ -3,7 +3,7 @@ package ru.project.restaurantvoting.web;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
-import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
+import ru.project.restaurantvoting.to.response.VoteResponseTo;
 
 import java.time.LocalDate;
 

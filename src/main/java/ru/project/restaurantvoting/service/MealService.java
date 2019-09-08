@@ -1,7 +1,7 @@
 package ru.project.restaurantvoting.service;
 
 import ru.project.restaurantvoting.model.Meal;
-import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
+import ru.project.restaurantvoting.to.response.MealResponseTo;
 import ru.project.restaurantvoting.to.MealTo;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 

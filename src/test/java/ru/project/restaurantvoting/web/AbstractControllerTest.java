@@ -59,7 +59,7 @@ public class AbstractControllerTest {
     }
 
     @BeforeEach
-    void setUp() {
+    protected void setUp() {
         cacheManager.getCacheNames().forEach(cacheName -> Objects.requireNonNull(cacheManager.getCache(cacheName)).clear());
         if (jpaUtil != null) {
             jpaUtil.clear2ndLevelHibernateCache();

@@ -6,7 +6,7 @@ import ru.project.restaurantvoting.model.Vote;
 import ru.project.restaurantvoting.repository.CrudRestaurantRepository;
 import ru.project.restaurantvoting.repository.CrudUserRepository;
 import ru.project.restaurantvoting.repository.CrudVoteRepository;
-import ru.project.restaurantvoting.to.responseTo.VoteResponseTo;
+import ru.project.restaurantvoting.to.response.VoteResponseTo;
 import ru.project.restaurantvoting.util.DateUtil;
 import ru.project.restaurantvoting.util.VoteUtil;
 import ru.project.restaurantvoting.util.exception.NotFoundException;

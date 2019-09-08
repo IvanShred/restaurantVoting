@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.project.restaurantvoting.model.Meal;
 import ru.project.restaurantvoting.service.MealService;
-import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
+import ru.project.restaurantvoting.to.response.MealResponseTo;
 import ru.project.restaurantvoting.to.MealTo;
 import ru.project.restaurantvoting.util.MealsUtil;
 

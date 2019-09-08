@@ -10,7 +10,7 @@ import ru.project.restaurantvoting.repository.CrudMealRepository;
 import ru.project.restaurantvoting.repository.CrudMealTypeRepository;
 import ru.project.restaurantvoting.repository.CrudRestaurantRepository;
 import ru.project.restaurantvoting.to.MealTo;
-import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
+import ru.project.restaurantvoting.to.response.MealResponseTo;
 import ru.project.restaurantvoting.util.MealsUtil;
 import ru.project.restaurantvoting.util.exception.NotFoundException;
 

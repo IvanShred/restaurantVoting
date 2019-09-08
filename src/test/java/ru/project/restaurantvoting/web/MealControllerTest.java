@@ -7,7 +7,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import ru.project.restaurantvoting.model.Meal;
 import ru.project.restaurantvoting.service.MealService;
-import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
+import ru.project.restaurantvoting.to.response.MealResponseTo;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -40,7 +40,7 @@ class MealControllerTest extends AbstractControllerTest {
         MealResponseTo returned = readFromJsonMvcResult(mvcResult, MealResponseTo.class);
 
         assertNotNull(returned);
-        assertEquals(LocalDate.of(2019, 9, 7), returned.getDateMeal());
+        assertEquals(LocalDate.now(), returned.getDateMeal());
         assertEquals("Кофе", returned.getDescription());
         assertEquals(60, returned.getPrice());
         assertEquals(100002, returned.getRestaurantId());

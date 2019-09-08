@@ -1,4 +1,4 @@
-package ru.project.restaurantvoting.to.responseTo;
+package ru.project.restaurantvoting.to.response;
 
 import ru.project.restaurantvoting.to.BaseTo;
 

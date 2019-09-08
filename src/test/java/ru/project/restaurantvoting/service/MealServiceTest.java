@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import ru.project.restaurantvoting.model.Meal;
 import ru.project.restaurantvoting.to.MealTo;
-import ru.project.restaurantvoting.to.responseTo.MealResponseTo;
+import ru.project.restaurantvoting.to.response.MealResponseTo;
 
 import java.time.LocalDate;
 
